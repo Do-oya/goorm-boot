@@ -14,13 +14,18 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/books")
-    public List<BookDto> getAllBooks() {
-        return bookService.getAllBooks();
+    @PostMapping
+    public BookEntity create(@RequestBody BookDto bookDto) {
+        return bookService.createBook(bookDto);
     }
 
-    @GetMapping("/books/search")
-    public List<BookDto> searchBooks(@RequestParam String keyword) {
-        return bookService.searchBooks(keyword);
+    @PutMapping("/{id}")
+    public BookEntity update(@PathVariable Long id, @RequestBody BookDto bookDto) {
+        return bookService.updateBook(id, bookDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public BookEntity delete(@PathVariable Long id) {
+        return bookService.deleteBook(id);
     }
 }

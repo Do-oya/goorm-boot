@@ -11,9 +11,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class BookDto {
 
-    private String id;
     private String title;
     private String author;
     private String publisher;
     private Date publishedDate;
+    private String genre;
 }

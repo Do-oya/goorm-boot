@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("dooyaspring.boothello.book")
+@MapperScan({"dooyaspring.boothello.mapper"})
 public class BootHelloApplication {
 
     public static void main(String[] args) {
