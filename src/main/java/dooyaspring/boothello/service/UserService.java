@@ -3,6 +3,7 @@ package dooyaspring.boothello.service;
 import dooyaspring.boothello.dto.UserDto;
 import dooyaspring.boothello.entity.UserEntity;
 import dooyaspring.boothello.repository.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,6 +24,20 @@ public class UserService {
         userEntity.setName(userDto.getName());
         userEntity.setEmail(userDto.getEmail());
         return userRepository.save(userEntity);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public UserEntity createWithRollback(UserDto userDto) throws Exception {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(userDto.getName());
+        userEntity.setEmail(userDto.getEmail());
+        userRepository.save(userEntity);
+
+        if (userDto.getEmail().contains("error")) {
+            throw new Exception("강제 예외 발생");
+        }
+
+        return userEntity;
     }
 
     @Transactional(readOnly = true)

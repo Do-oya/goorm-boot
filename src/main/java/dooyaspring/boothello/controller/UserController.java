@@ -16,8 +16,9 @@ public class UserController {
     }
 
     @PostMapping
-    public UserEntity create(@RequestBody UserDto userDto) {
+    public UserEntity create(@RequestBody UserDto userDto) throws Exception {
         return userService.createUser(userDto);
+//        return userService.createWithRollback(userDto);
     }
 
     @GetMapping
